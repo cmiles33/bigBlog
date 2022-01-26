@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!k#%sw2s!+!skzfwq5eiqhez_3w0vkj4kii(h@a&qr-ht2@^fo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysterious-escarpment-60731.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -43,10 +43,11 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'taggit',
     'sass_processor',
-    'compressor'
+    'compressor',
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -144,6 +145,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'boot')
 ]
 
+WSGI_APPLICATION = 'djangoProject2.wsgi.application'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -155,3 +157,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+import dj_database_url
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
