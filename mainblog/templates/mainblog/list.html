@@ -1,0 +1,60 @@
+{% extends "mainblog/base.html" %}
+
+{% block title %}My Blog {% endblock %}
+
+{% block dynamicNav %}
+            <a class="nav-item nav-link active disabled" href="#">
+                Categories
+            </a>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container container-design">
+        <div class="row border border-secondary border-3">
+            <div class="col-lg text-center align-content-center ">
+                <h1 class="open-titles" >Welcome to the blog.</h1>
+                <br>
+                <h3 class="open-titles">Below you will find our blog posts.</h3>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-6">
+                    <div class="short-titles "> Read Our Blog</div>
+                </div>
+                <div class="col-6 ">
+                    <div class="short-titles "> Explore Our Blog</div>
+                    <div class="row align-items-stretch">
+                        <div class="col btn-group">
+                            <button type="button" class="btn btn-block btn-secondary">Categories</button>
+                        </div>
+                        <div class="col btn-group">
+                            <button type="button" class="btn btn-block btn-secondary">Users</button>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+        <div class="row items">
+            {% for post in posts %}
+                    <div class="col-6 gy-4   align-items-stretch">
+                        <div class="">
+                            <div class="card bg-dark border-secondary border-3">
+                                <div class="card-header bg-dark border-secondary">
+                                    Post by: {{ post.author|capfirst }}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="text-primary short-titles">{{ post.title|title }}</h5>
+                                    <p class="card-text">{{ post.body|truncatewords:60|linebreaksbr }}</p>
+                                    <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,123 @@
+
+
+//Cailans color choices
+$light-brown: #e07c1f;
+$dark-brown: #9d5716;
+$dark-tan: #e0a21f;
+$bright-red: #e03e1f;
+$dark-red: #9d2b16;
+$cailan-green: #639d16;
+
+// Main Colors
+$primary: $cailan-green;
+$secondary: $dark-tan;
+
+$dark: $dark-red;
+$light: $bright-red;
+
+
+$body-bg: $dark-brown;
+$body-color: white;
+
+$form-text-color:black;
+
+
+textarea {
+
+
+  background-color: #ffdb99;
+
+}
+
+//$font-family-base: "Roboto";
+.titles{
+  font-family: Abadi, serif;
+  color: white;
+  font-weight: 800;
+  font-size: 150px;
+
+}
+.short-titles{
+  font-family: Abadi, serif;
+  color: white;
+  font-weight: 800;
+  font-size: 55px;
+}
+.open-titles{
+  font-family: Abadi, serif;
+  color: white;
+  font-weight: 800;
+  font-size: 75px;
+}
+.blog-body{
+  font-family: Garamond, serif;
+  font-size: 100px;
+
+
+}
+.blog-container{
+    border-style: groove;
+    border-color: $secondary;
+    border-width: 5px;
+    background-color: $dark ;
+}
+
+.container-design{
+  background-color: $light-brown;
+  border-color: $dark-tan;
+  border-width: 10px;
+  border-style: groove;
+}
+
+
+
+.wrapper{
+  display: flex;
+  width:100%;
+  align-items: stretch;
+}
+#sidebar{
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+    background: $dark;
+
+
+}
+#sidebar .sidebar-header{
+  padding-left:20px;
+}
+#sidebar .list-style{
+  padding-left:20px;
+}
+#sidebar .header-list{
+  padding: 20px;
+}
+
+#sidebar.active{
+  margin-left: -250px;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
+
+
+@import 'scss/bootstrap';
+

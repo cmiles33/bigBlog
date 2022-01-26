@@ -1,0 +1,60 @@
+{% extends "mainblog/base.html" %}
+{% load static %}
+
+{% block title %} {{ request.user.username|capfirst }}'s Profile
+{% endblock %}
+
+
+{% block content %}
+    <div class="container container-design">
+        <div class="row">
+            <div class="col-lg">
+                <h1>Welcome to your profile {{ request.user.username|capfirst }}</h1>
+                <h2>Get to viewing your profile and tings.</h2>
+
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-lg">
+                <a class="btn btn-primary btn-lg" href="{% url "mainblog:create_post" %}">
+                    Make a post?
+                </a>
+            </div>
+        </div>
+        {% if posts.count != 0 %}
+        <div class="row">
+            <div class="col-lg">
+                <h4 class=" short-titles">
+                    View your created posts:
+                </h4>
+            </div>
+        </div>
+        <div class="row items">
+            {% for post in posts %}
+                <div class="col-4 gy-4   align-items-stretch">
+                    <div class="">
+                        <div class="card bg-dark border-secondary border-3">
+                            <div class="card-header bg-dark border-secondary">
+                                Post Created: {{ post.publish|date }}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="text-primary short-titles">{{ post.title|title }}</h5>
+                                <p class="card-text">{{ post.body|truncatewords:60|linebreaksbr }}</p>
+                                <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-lg">
+                <h3 class="text-danger">
+                    No posts made yet???
+                </h3>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
