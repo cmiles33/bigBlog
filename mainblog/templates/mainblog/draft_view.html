@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-lg bg-dark border-secondary border
                             border-3">
-                <h1 class="text-primary">
+                <h1 class="text-primary ">
                     Time to create a new post my dog.
                 </h1>
                 <h2>
@@ -23,16 +23,16 @@
                 </h2>
             </div>
         </div>
-        {% if not new_post %}
+        {% if not finished %}
             <div class="row">
                 <div class="col-lg">
                     <form method="post">
                         {% csrf_token %}
-                        {% for hidden_field in post_form.hidden_fields %}
+                        {% for hidden_field in draftForm.hidden_fields %}
                             {{ hidden_field }}
                         {% endfor %}
 
-                    {% for field in post_form.visible_fields %}
+                    {% for field in draftForm.visible_fields %}
                         <div class="form-group">
                             {{ field.label_tag }}
                             {% render_field field class="form-control bg-dark" %}

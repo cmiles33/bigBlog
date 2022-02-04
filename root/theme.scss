@@ -7,20 +7,29 @@ $dark-tan: #e0a21f;
 $bright-red: #e03e1f;
 $dark-red: #9d2b16;
 $cailan-green: #639d16;
-
+//$cailan-green: #3b9d16;
+// Main Whites
+$off-white: #f1e8e6;
+$pink-white: #edd2cb;
 // Main Colors
-$primary: $cailan-green;
+$primary: $off-white;
 $secondary: $dark-tan;
+$success: $cailan-green;
 
 $dark: $dark-red;
 $light: $bright-red;
 
 
 $body-bg: $dark-brown;
-$body-color: white;
+//$body-color: white;
+$body-color: $pink-white;
 
 $form-text-color:black;
 
+// Editing Active color
+.active a{
+  color: $off-white !important;
+}
 
 textarea {
 

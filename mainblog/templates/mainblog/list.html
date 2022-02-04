@@ -27,7 +27,10 @@
                     <div class="short-titles "> Explore Our Blog</div>
                     <div class="row align-items-stretch">
                         <div class="col btn-group">
-                            <button type="button" class="btn btn-block btn-secondary">Categories</button>
+                            <a class="btn btn-block btn-primary active" role="button"
+                               href="{% url 'mainblog:category_list' %}">
+                                Categories
+                            </a>
                         </div>
                         <div class="col btn-group">
                             <button type="button" class="btn btn-block btn-secondary">Users</button>

@@ -14,6 +14,8 @@
 
             </div>
         </div>
+
+
         <div class="row my-3">
             <div class="col-lg">
                 <a class="btn btn-primary btn-lg" href="{% url "mainblog:create_post" %}">
@@ -21,6 +23,37 @@
                 </a>
             </div>
         </div>
+
+        {% if post_drafts.count != 0  %}
+            <div class="row">
+            <div class="col-lg">
+                <h4 class=" short-titles">
+                    View your Drafted posts:
+                </h4>
+            </div>
+        </div>
+        <div class="row items">
+            {% for draft in post_drafts %}
+                <div class="col-4 gy-4   align-items-stretch">
+                    <div class="">
+                        <div class="card bg-dark border-secondary border-3">
+                            <div class="card-header bg-dark border-secondary">
+                                Draft Created: {{ draft.publish|date }}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="text-primary short-titles">{{ draft.title|title }}</h5>
+                                <p class="card-text">{{ draft.body|truncatewords:60|linebreaksbr }}</p>
+                                <a href="{{ draft.get_draft_url }}" class="btn btn-primary">Edit Draft</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% endif %}
+
+
         {% if posts.count != 0 %}
         <div class="row">
             <div class="col-lg">
@@ -41,6 +74,7 @@
                                 <h5 class="text-primary short-titles">{{ post.title|title }}</h5>
                                 <p class="card-text">{{ post.body|truncatewords:60|linebreaksbr }}</p>
                                 <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read</a>
+                                <a href="{{ post.get_draft_url }}" class="btn btn-secondary">Edit Post</a>
                             </div>
                         </div>
                     </div>

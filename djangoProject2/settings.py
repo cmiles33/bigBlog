@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'taggit',
     'sass_processor',
     'compressor',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,41 @@
+{% extends "mainblog/base.html" %}
+{% load static %}
+{% block title %}Our Categories{% endblock %}
+
+{% block content %}
+    <div class="container container-design">
+        <div class="row">
+            <div class="col-lg text-center align-content-center">
+                <h1 class="open-titles">
+                    Our Categories
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            {% for category in categories %}
+                <div class="col-6 border border-secondary border-3">
+                <div class="border-primary open-titles text-secondary border border-secondary bg-dark
+                             border-3 text-center">{{ category.categoryName }}</div>
+                        <div class="row items">
+                        {% for posts in category.blog_posts.all %}
+                            {% if posts.status == "published" %}
+                            <div class="col-12 gy-4 align-items-stretch">
+                                <div class="card bg-dark border-secondary border-3">
+                                    <div class="card-header bg-dark border-secondary">
+                                        Post by: {{ posts.author|capfirst }}
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="text-primary short-titles">{{ posts.title|title }}</h5>
+                                        <p class="card-text">{{ posts.body|truncatewords:60|linebreaksbr }}</p>
+                                        <a href="{{ posts.get_absolute_url }}" class="btn btn-primary">Read</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -28,9 +28,9 @@
                 <div class="h4 short-titles"> Our Blog</div>
                 <div class="row align-items-center">
                     <div class="col btn-group">
-                        <button type="button" class="btn btn-block btn-secondary">
+                        <a class="btn-primary btn btn-block active" href="{% url 'mainblog:post_list' %}">
                             Take Me there
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <a class="nav-link" href="{% url 'mainblog:post_list' %}">Home</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link disabled" href="#">Categories</a>
+                <a class="nav-link" href="{% url 'mainblog:category_list' %}">Categories</a>
             </li>
             {% if request.user.is_authenticated  %}
 
