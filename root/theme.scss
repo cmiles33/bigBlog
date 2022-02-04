@@ -60,7 +60,9 @@ textarea {
 }
 .blog-body{
   font-family: Garamond, serif;
-  font-size: 100px;
+  font-size: 25px;
+  font-weight: 500;
+  color: $off-white !important;
 
 
 }
@@ -68,7 +70,8 @@ textarea {
     border-style: groove;
     border-color: $secondary;
     border-width: 5px;
-    background-color: $dark ;
+    //background-color: $dark ;
+    background-color: #801500;
 }
 
 .container-design{

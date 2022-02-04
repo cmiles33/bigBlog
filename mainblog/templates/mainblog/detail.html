@@ -16,10 +16,14 @@
 
     <div class="container">
         <div class="row ">
-            <div class="col-lg bg-dark text-center ">
+            <div class="col-lg bg-dark text-Center ">
                 <div class="text-primary titles">
                     {{ post.title|title }}
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg text-left bg-dark">
                 <div class="text-secondary h4">
                     Published: {{ post.publish|date }}
                     {{ post.publish|time }}<br>
@@ -34,8 +38,7 @@
         <div class="row blog-container">
             <div class="p-3">
                 <div class="col-lg ">
-                    <p class="text-body
-                                lead text-primary blog-body ">
+                    <p class=" blog-body ">
                         {{ post.body |linebreaksbr }}
 
                     </p>
@@ -53,7 +56,7 @@
             </div>
         {% else %}
             <div class="row gy-5 " id="comment_form_section">
-                <div class="col-6 bg-secondary border-secondary border border-3">
+                <div class="col-6 bg-dark border-secondary border border-3">
                     <h2>Add a new comment</h2>
                     <form method="post">
                         {% csrf_token %}
