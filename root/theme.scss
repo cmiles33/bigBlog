@@ -43,7 +43,7 @@ textarea {
   font-family: Abadi, serif;
   color: white;
   font-weight: 800;
-  font-size: 150px;
+  font-size: 100px;
 
 }
 .short-titles{
@@ -67,11 +67,23 @@ textarea {
 
 }
 .blog-container{
-    border-style: groove;
-    border-color: $secondary;
-    border-width: 5px;
+    //border-style: groove;
+    //border-color: $secondary;
+    //border-width: 5px;
     //background-color: $dark ;
+    border-bottom-color: $off-white;
+    border-top-color: $off-white;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-top-style: solid;
+    border-bottom-style: solid;
     background-color: #801500;
+}
+.post-container-border{
+    border-style: inset;
+    border-color: #801500;
+    border-width: 10px;
+    background-color:#801500;
 }
 
 .container-design{
