@@ -20,5 +20,6 @@ from mainblog.views import post_list
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('mainblog/', include('mainblog.urls', namespace='mainblog')),
+    path('artgallery/', include('artgallery.urls', namespace='artgallery')),
     path('',post_list, name='post_list2')
 ]

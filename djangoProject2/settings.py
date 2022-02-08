@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainblog.apps.MainblogConfig',
+    'artgallery.apps.ArtgalleryConfig',
     'crispy_forms',
     'crispy_bootstrap5',
     'taggit',
