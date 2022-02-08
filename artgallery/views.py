@@ -4,5 +4,7 @@ from .models import ArtPost
 
 
 def art_main_page(request):
+    artposts = ArtPost.objects.all()
 
-    return render(request, 'artlist.html')
+    return render(request, 'artlist.html',
+                  {'artposts':artposts})

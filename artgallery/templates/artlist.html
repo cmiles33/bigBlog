@@ -11,5 +11,24 @@
                 <h3 class="open-titles">Below you Will find Art.</h3>
             </div>
         </div>
+        <div class="row items">
+            {% for art in artposts %}
+                    <div class="col-6 gy-4   align-items-stretch">
+                        <div class="">
+                            <div class="card bg-dark border-secondary border-3">
+                                <div class="card-header bg-dark border-secondary">
+                                    Art Piece Name: {{ art.name|capfirst }}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="text-primary short-titles">{{ post.title|title }}</h5>
+                                    <p class="card-text">{{ art.description|truncatewords:60|linebreaksbr }}</p>
+                                    <img class="card-img" src="{{ art.upload.url }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
