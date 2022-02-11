@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <script src="{% static "js/jquery-3.6.0.js" %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
 </head>
 
 <div class="wrapper">
@@ -108,3 +109,7 @@
 
 });
 </script>
+
+{% block javascript %}
+
+{% endblock %}

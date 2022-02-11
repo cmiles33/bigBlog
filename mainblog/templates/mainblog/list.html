@@ -51,6 +51,11 @@
                                     <h5 class="text-primary short-titles">{{ post.title|title }}</h5>
                                     <p class="card-text">{{ post.body|truncatewords:60|linebreaksbr }}</p>
                                     <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read</a>
+                                    <button id="ajaxSubmit" class="btn-primary btn btn-block"
+                                        data-toggle="collapse" data-target="#test-collapse">Click Me</button>
+                                    <div class="form-collapse">
+                                        <h1>our form</h1>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -60,4 +65,16 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascript %}
+<script>
+$(document).ready(function(){
+    $("#ajaxSubmit").click(function (event){
+        console.log("Our button was clicked")
+        $(".form-collapse").slideToggle('fast');
+
+    });
+});
+</script>
 {% endblock %}

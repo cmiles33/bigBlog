@@ -93,7 +93,9 @@ textarea {
   border-style: groove;
 }
 
-
+.form-collapse{
+  display:none;
+}
 
 .wrapper{
   display: flex;
@@ -141,6 +143,8 @@ a[data-toggle="collapse"] {
         margin-left: 0;
     }
 }
+
+
 
 
 @import 'scss/bootstrap';

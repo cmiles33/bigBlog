@@ -23,6 +23,26 @@
                                     <h5 class="text-primary short-titles">{{ post.title|title }}</h5>
                                     <p class="card-text">{{ art.description|truncatewords:60|linebreaksbr }}</p>
                                     <img class="card-img" src="{{ art.upload.url }}">
+                                    <button id="ajaxSubmit" class="btn-dark btn btn-lg btn-block">Edit Post?</button>
+                                    <div class="form-collapse" id="lmao world">
+                                        <h1>Edit this post?</h1>
+                                        <form >
+                                            <div class="form-group">
+                                                <label for="artpost{{ art.id }}">New Title</label>
+                                                <input type="text" class="form-control bg-dark" id="artpost{{ art.id }}"
+                                                       placeholder="Enter New Title">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="artpost-description{{ art.id }}">New Description </label>
+                                                <textarea type="text" class="form-control form-text bg-dark"
+                                                          id="artpost-description{{ art.id }}">
+                                                </textarea>
+                                            </div>
+
+                                        </form>
+                                        <button  class="btn btn-primary update-button"
+                                            id="{{ art.id }}">Update</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -31,4 +51,52 @@
             {% endfor %}
         </div>
     </div>
+{% endblock %}
+
+
+{% block javascript %}
+<script>
+var csrftoken = Cookies.get('csrftoken');
+function csrfSafeMethod(method) {
+// these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+$.ajaxSetup({
+    beforeSend: function (xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+$(document).ready(function(){
+    $("#ajaxSubmit").click(function (event){
+        console.log("Our button was clicked")
+        $(".form-collapse").slideToggle('fast');
+
+
+    });
+    $(".update-button").click(function(event){
+        event.preventDefault();
+        console.log($(this).parent().attr('id'))
+        console.log($(this).parent().children()[1])
+        let myform = $(this).parent().children()[1]
+        console.log($(myform).serializeArray())
+
+        console.log("Our Update Button clicked");
+            $.post('/artgallery/update-art/',
+            {
+                artpostid : $(this).attr("id"),
+
+            }, function(data){
+                if (data['status'] === 'ok'){
+                    console.log("post Sucessful.");
+                }
+            }
+        );
+
+    });
+});
+</script>
 {% endblock %}

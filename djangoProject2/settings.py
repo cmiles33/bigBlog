@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainblog.apps.MainblogConfig',
     'artgallery.apps.ArtgalleryConfig',
+    'ceramichaven.apps.CeramichavenConfig',
     'crispy_forms',
     'crispy_bootstrap5',
     'taggit',
