@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import CeramicCollection, Product
+from .models import CeramicCollection, Product, CollectionBlogPost
 
 # Register your models here.
+
 
 @admin.register(CeramicCollection)
 class CeramicCollectionAdmin(admin.ModelAdmin):
@@ -18,3 +19,11 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name', )}
 
 
+@admin.register(CollectionBlogPost)
+class CollectionBlogPost(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'publish', 'status')
+    list_filter = ('status', 'created', 'publish')
+    search_fields = ('title', 'body')
+    prepopulated_fields = {'slug': ('title',)}
+    date_hierarchy = 'publish'
+    ordering = ('status', 'publish')

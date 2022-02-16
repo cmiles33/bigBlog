@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+from django.utils import timezone
 
 
 class CeramicCollection(models.Model):
@@ -35,4 +36,30 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class CollectionBlogPost(models.Model):
+    STATUS_CHOICES = (
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+    )
+    main_picture = models.FileField()
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256,
+                            unique_for_date='publish')
+    category = models.ForeignKey(CeramicCollection,
+                                 on_delete=models.PROTECT,
+                                 related_name='blog_display')
+    body = models.TextField()
+    publish = models.DateTimeField(default=timezone.now)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=10,
+                              choices=STATUS_CHOICES)
+
+    class Meta:
+        ordering = ('-publish',)
+
+    def __str__(self):
+        return self.title
 

@@ -1,0 +1,100 @@
+{% extends "ceramic_base.html" %}
+
+{% block title %}Ceramic Haven{% endblock %}
+
+{% block content%}
+
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron-fluid">
+                <div class="container bg-dark">
+                    <div class="row">
+                        <div class="text-white">
+                            <div class="col-12 text-center">
+                                <h1 class="display-4">Welcome to the Ceramic Haven</h1>
+                                <p class="lead">Make your self at home. Embrace our ceramic
+                                creations, but don't get too high off the enamel fumes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-6 text-white text-center">
+                                <hr class="my-4">
+                                <p class="lead">Take a look at our collections and the blog side of our site.</p>
+                                <p class="lead">
+                                    <a class="btn btn-primary btn-lg" href="{% url "ceramichaven:catalog_view" %}"
+                                       role="button">View Collections</a>
+                                </p>
+                            </div>
+                            <div class="col-6 text-white text-center">
+                                <hr class="my-4">
+                                <p class="lead">We also sell ceramic products too.</p>
+                                <p class="lead">
+                                    <a class="btn btn-success btn-lg" href="#" role="button">Browse Whats For Sale</a>
+                                </p>
+                            </div>
+                    </div>
+                            <div class="row">
+                                <div class="jumbotron">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-6 text-white">
+                                                <h4 class="display-5">But while your snooping...</h4>
+                                                <p class="lead">Take a look at our recent blog post about our collections</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-lg-4"></div>
+        <div class="row">
+        </div>
+        {% for ceramics in ceramic_post %}
+
+            {% for posts in ceramics.blog_display.all %}
+                <div class="my-lg-1"></div>
+                <div class="row">
+                <div class="col-12 text-white">
+                    <div class="card">
+                        <div class="card-body bg-dark">
+                            <h4 class="card-title">
+                                {{ posts.title|title }}
+                            </h4>
+                            <h6 class="card-subtitle">Apart of the: {{ ceramics.name |title }}
+                             Collection</h6>
+                            <hr class="my-3">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-3" >
+                                        <img   class="img-fluid card-img" src="{{ posts.main_picture.url }}">
+
+                                    </div>
+                                    <div class="col-3 ">
+                                        <p class="card-text lead">{{ posts.body }}</p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h5 class="card-title">Interested In Browsing Collection?</h5>
+                                        <div class="my-3"></div>
+                                        <a class="btn btn-primary btn-lg" href="#" role="button">Browse Collection</a>
+                                        <hr class="my-4">
+                                        <h5 class="card-title">Interested In buying from Collection?</h5>
+                                        <div class="my-3"></div>
+                                        <a class="btn btn-success btn-lg" href="#" role="button">Buy A Piece</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                    <div class="my-4"></div>
+            {% endfor %}
+                </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
