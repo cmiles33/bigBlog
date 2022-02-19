@@ -1,0 +1,88 @@
+{% extends "ceramic_base.html" %}
+{% load static %}
+
+{% block title %}
+Your Shopping Cart
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron bg bg-dark">
+                <h1 class="display-3 text-white">Ceramic Haven</h1>
+                <p class="lead text-white">Making ceramic dreams happen.</p>
+                <hr class="my-4">
+                <a class="btn btn-primary" role="button"
+                   href="{% url 'ceramichaven:main_page' %}">Home</a>
+                <a class="btn btn-primary" role="button"
+                   href="{% url 'ceramichaven:catalog_view' %}">
+                    View All Products
+                </a>
+                <hr class="my-4">
+                <h4 class="display-1 text-white">Shopping Cart</h4>
+                <div class="my-4"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+                <table class="table">
+                    <thead class="text-white">
+                        <tr>
+
+                            <th scope="col">Image</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Remove</th>
+                            <th scope="col">Unit Price</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-white">
+                    {% for item in cart %}
+                        {% with product=item.product %}
+                            <tr>
+
+                                <td>
+                                    <a href="{{ product.get_absolute_url }}">
+                                        <img class="img-thumbnail img-fluid" style="width:180px;" src="{{ product.image.url }}">
+                                    </a>
+                                </td>
+                                <td>
+                                    {{ product.name|title }}
+                                </td>
+                                <td>
+                                    {{ item.quantity }}
+                                </td>
+                                <td>
+                                    <form action="{% url "cart:cart_remove" product.id %}"
+                                          method="post">
+                                        <button type="submit" class="btn btn-danger">Remove</button>
+                                        {% csrf_token %}
+                                    </form>
+                                </td>
+                            <td>${{ item.price }}</td>
+                            <td>${{ item.total_price }}</td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td colspan="4"></td>
+                                <td>${{ cart.get_total_price }}</td>
+                            </tr>
+                        {% endwith %}
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+                <p>
+                    <a class="btn btn-primary" href="{% url "ceramichaven:catalog_view" %}">
+                        Keep Shopping?
+                    </a>
+                    <a class="btn btn-success" href="#">Checkout</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

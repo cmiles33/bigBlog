@@ -1,0 +1,81 @@
+{% extends "ceramic_base.html" %}
+{% load widget_tweaks %}
+{% block title %}Ceramic Haven{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron bg bg-dark">
+                <h1 class="display-3 text-white">Ceramic Haven</h1>
+                <p class="lead text-white">Making ceramic dreams happen.</p>
+                <hr class="my-4">
+                <a class="btn btn-primary" role="button"
+                   href="{% url 'ceramichaven:main_page' %}">Home</a>
+                <a class="btn btn-primary" role="button"
+                   href="{% url 'ceramichaven:catalog_view' %}">
+                    View All Products
+                </a>
+                <a class="btn btn-success" role="button"
+                   href="{{ product.category.get_absolute_url }}">
+                    Vew More Of The {{ product.category.name|title }}
+                </a>
+                <div class="my-4"></div>
+            </div>
+        </div>
+        <div class="my-lg-5"></div>
+        <div class="row">
+                <div class="col-md-4">
+                    <img class="img-fluid border-dark border border-5"
+                         src="{{ product.image.url }}">
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="display-3 text-white">
+                                {{ product.name |title }}
+                            </h3>
+                        </div>
+                        <div class="col-12">
+                            <p class="lead text-white">
+                               {{ product.description }}
+                                Pots are like data, they provide insight into the cultural interchanges of African societies; the life they led, the paths they trod, the needs they had and the skills they possessed. Shards of pottery found by archaeologists in ancient sites tell us that pots were being made as early as 7000 BC.
+
+A noble reverence can be felt when looking at a beautifully formed vessel that has fulfilled its function perfectly for thousands of years.
+
+Simultaneously art and craft, African pots represent both conceptual ideas and practical utility. At once durable yet fragile, they have endured for centuries and through them, we can start to imagine the artists who shaped their form with their bare hands and crafted their features with crude tools.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="lead mx-2 text-white">View Collection More Like this?</span>
+                            <a class="btn-primary btn btn-lg" role="button"
+                            href="#">
+                                View Collection
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <span class="lead mx-2 text-white">
+                                Interested in purchasing?</span>
+                                <form action="{% url "cart:cart_add" product.id %}"
+                                      method="post">
+                                {% for field in cart_product_form.visible_fields %}
+                                    <div class="form-group text-white">
+                                        {{ field.label_tag }}
+                                        {% render_field field class="form-control bg-dark text-white" %}
+                                    </div>
+                                {% endfor %}
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success">Add to Cart</button>
+                                </form>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

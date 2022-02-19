@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_POST
+from cart.forms import CartAddProductForm
 
 from .models import CeramicCollection, Product
 
@@ -31,3 +32,11 @@ def catalog_view(request, collection_slug=None):
                    'products': products})
 
 
+def product_detail(request, id, product_slug):
+    product = get_object_or_404(Product, id=id,
+                                slug=product_slug,
+                                available=True)
+    cart_product_form = CartAddProductForm()
+    return render(request,'product_detail.html',
+                  {'product': product,
+                   'cart_product_form': cart_product_form})
